@@ -49,7 +49,7 @@ passport.deserializeUser(async (id, done) => {
     done(err);
   }
 });
-
+app.use(express.static("public"));
 app.use("/", homeRouter);
 app.use("/sign-up", signupRouter);
 app.use("/post", postRouter);
