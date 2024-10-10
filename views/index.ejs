@@ -6,7 +6,47 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Welcome Home</h1>
+    
+    <% if (locals.user) { %>
+        <h1>Welcome Home <%= user.username %></h1>
+        <% console.log(user.member); 
+        if (user.member !== true){ %>
+        <a href="member">Become a Member</a>
+        <div class="messages">
+            <% if (rows){ %>
+                <div><%= rows[0].created_at.slice(0,10) %></div>
+        <% date = rows[0].created_at.slice(0,10) %>
+        <% rows.map((user)=>{%>
+        <% if (date !== user.created_at.slice(0,10)){ %>
+            <div><%= user.created_at.slice(0,10) %></div>
+            <% date = user.created_at.slice(0.10) %>
+        <% } %> 
+        <div><%= user.created_at.slice(10) %> <b>Anon: </b> <%= user.content %></div>
+            <% })}; %>
+        <% }else{ %>
+            <div class="messages"></div>
+            <%  if (rows){ %>
+           <div><%= rows[0].created_at.slice(0,10) %></div>
+        <% date = rows[0].created_at.slice(0,10) %>
+        <% rows.map((user)=>{%>
+        <% if (date !== user.created_at.slice(0,10)){ %>
+            <div><%= user.created_at.slice(0,10) %></div>
+            <% date = user.created_at.slice(0.10) %>
+        <% } %> 
+        <div><%= user.created_at.slice(10) %> <b><%= user.username %> </b> <%= user.content %></div>
+            <% })}; %>
+            <% } %>
+        </div>
+    <div class="post">
+        <form action="/post" method="POST">
+            <input type="hidden" name="username" value="<%= user.username %>">
+            <input type="hidden" name="user_id" value="<%= user.id %>">
+            <textarea name="content" id="content" rows="4" cols="50" placeholder="Yap away"></textarea>
+            <button type="submit">Post</button>
+        </form>    
+    </div>
+    <a href="/logout">LOG OUT</a>
+    <% } else{ %>
     <a href="/sign-up">Sign Up for the Club</a>
     <h3>Log in</h3>
     <form action="/" method="POST">
@@ -16,5 +56,17 @@
         <input type="text" name="password" id="password">
         <button type="submit">Submit</button>
     </form>
+    <% let date = null; %> 
+    <% if (rows){ %> 
+        <div><%= rows[0].created_at.slice(0,10) %></div>
+        <% date = rows[0].created_at.slice(0,10) %>
+        <% rows.map((user)=>{%>
+        <% if (date !== user.created_at.slice(0,10)){ %>
+            <div><%= user.created_at.slice(0,10) %></div>
+            <% date = user.created_at.slice(0.10) %>
+        <% } %> 
+        <div><%= user.created_at.slice(10) %> <b>Anon: </b> <%= user.content %></div>
+    <% })}; %>
+    <% } %>
 </body>
 </html>

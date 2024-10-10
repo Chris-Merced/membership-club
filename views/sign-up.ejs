@@ -7,6 +7,9 @@
 </head>
 <body>
     <h1>Sign Up Here!</h1>
+    <% if (errorMessage) { %>
+        <div>Sorry That Username Has Been Taken!</div>
+    <% } %>
     <form method="POST" action="/sign-up">
         <label for="username">Username:</label>
         <input type="text" id="username" name="username">
@@ -14,5 +17,6 @@
         <input type="text" id="password" name="password">
         <button type="submit">Signup</button>
     </form>
+    <a href="/">Back To Homepage</a>
 </body>
 </html>

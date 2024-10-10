@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Become One Of US</h1>
+    <% if (locals.user){ %>
+    <h3>Enter The Secret Passphrase</h3>
+    <% if(errorMessage) { %>    
+    <div>Wrong Passphrase</div>
+    <% } %>
+    <form action="/member" method="POST">
+        <input type="text" name="passphrase">
+        <input type="hidden" name="user_id" value="<%=user.id%>">
+        <button type="submit">Assimilate</button>
+    </form>
+    <% } %>
+
+    <a href="/">HomePage</a>
+</body>
+</html>

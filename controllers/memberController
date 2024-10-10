@@ -1,0 +1,16 @@
+const db = require('../db/queries')
+
+function displayMemberPage(req, res) {
+    res.render('member', {user:req.user, errorMessage: null});
+}
+
+async function createMember(req, res, next) {
+    const unlockPhrase = process.env.UNLOCK_PHRASE;
+    if (unlockPhrase !== req.body.passphrase) {
+        console.log('wrong pass')
+        return res.render('member', {user: req.user, errorMessage: "Wrong Passphrase"});
+    }
+    await db.upgradeMember(req.body.user_id);
+    res.redirect("/");
+}
+module.exports = {displayMemberPage, createMember}
