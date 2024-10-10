@@ -8,7 +8,7 @@
 <body>
     <h1>Sign Up Here!</h1>
     <% if (errorMessage) { %>
-        <div>Sorry That Username Has Been Taken!</div>
+        <div><%= errorMessage %></div>
     <% } %>
     <form method="POST" action="/sign-up">
         <label for="username">Username:</label>
