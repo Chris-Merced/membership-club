@@ -56,4 +56,5 @@ app.use("/post", postRouter);
 app.use("/logout", logoutRouter)
 app.use("/member", memberRouter)
 
-app.listen(3000, console.log("We are live"));
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, console.log("We are live"));
