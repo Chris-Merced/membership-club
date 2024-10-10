@@ -5,5 +5,6 @@ body {
 }
 
 a {
-    color: rgb(36, 36, 36);
+    color: rgb(68, 68, 68);
+    font-weight: bolder;
 }
